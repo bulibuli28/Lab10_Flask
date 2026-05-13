@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Students{% endblock %}
+
+{% block content %}
+  <h2>Student List</h2>
+  
+  <p>Total Students: {{ students|length }}</p>
+  
+  <a href="{{ url_for('add_student') }}" class="btn btn-primary">
+    Add Student
+  </a>
+  
+  <ul>
+    {% for student in students %}
+      <!-- Bold the Student Names -->
+      <li>
+        <strong>{{ student.full_name }}</strong> ({{ student.email }})
+        - <a href="{{ url_for('delete_student', id=student.id) }}">Delete</a>
+      </li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}

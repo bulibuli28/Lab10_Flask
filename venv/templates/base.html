@@ -1,0 +1,55 @@
+<img src="{{ url_for('static',filename='images/logo.png') }}" alt="Logo" width="100"> 
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> 
+
+  <!-- Style Flash Messages in Red --> 
+{% for msg in messages %} 
+    <p style="color: red;">{{ msg }}</p> 
+{% endfor %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activity 10 Flask Web App</title>
+</head>
+<body>
+
+  <nav>
+    <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('about') }}">About</a>
+    <a href="{{ url_for('contact') }}">Contact</a>
+    
+    {% if current_user.is_authenticated %}
+      <a href="{{ url_for('students') }}">Students</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+      <a href="{{ url_for('login') }}">Login</a>
+      <a href="{{ url_for('register') }}">Register</a>
+    {% endif %}
+
+    <!-- Show Current User Email -->
+    {% if current_user.is_authenticated %} 
+      <p>Welcome, {{ current_user.email }}</p> 
+    {% endif %}
+  </nav>
+
+  <main>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for msg in messages %}
+          <div class="message">{{ msg }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
+
+<!-- Add Footer to Base Template -->
+<footer style="text-align:center; padding: 10px;">
+    © 2025 Flask Activity
+</footer>

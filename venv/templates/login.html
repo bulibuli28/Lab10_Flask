@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{{ form.email(class_="input-field") }}
+
+{% block content %}
+  <h2>Login</h2>
+  
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    
+    <div>
+      {{ form.email.label }}
+      {{ form.email(placeholder="Enter your email") }}
+    </div>
+    
+    <div>
+      {{ form.password.label }}
+      {{ form.password(placeholder="Enter your password") }}
+    </div>
+    
+    <div>
+      <!-- Use Bootstrap Button Class -->
+      {{ form.submit(class_="btn btn-primary") }}
+    </div>
+  </form>
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{{ form.email(class_="input-field") }}
+
+{% block content %}
+  <h2>Create a New Account</h2>
+  
+  <p>Please fill in the details below:</p>
+  
+  <form method="POST">
+    {{ form.hidden_tag() }}
+    
+    <div>
+      {{ form.email.label }}
+      {{ form.email(size=30) }}
+    </div>
+    
+    <div>
+      {{ form.password.label }}
+      {{ form.password(size=30) }}
+    </div>
+    
+    <div>
+      {{ form.submit(class_="btn") }}
+    </div>
+  </form>
+
+{% endblock %}
